@@ -2,7 +2,7 @@
 
 ## Symmetric Encyption
 
-* Shif Cipher
+* Shift Cipher
 * Substitution Cipher
 * Vigenere Cipher
 * Permutation Cipher
