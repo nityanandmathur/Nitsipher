@@ -48,6 +48,9 @@ public class Cryptanalyser {
         for(int key1 = 1; key1 < 26; key1++) {
             if(key1%2 != 0) {
                 int key2 = (mostCommonValue - (ciphertext.indexOf('E') - ciphertext.indexOf('A')) * key1) % 26;
+                // int x = mostCommon - 'A';
+                // int key2 = (x - 4 * key1) % 26;
+
                 System.out.println("Possible values of key1 and key2: " + key1 + " " + key2);
                 plaintext = "";
                 for(int i = 0; i < ciphertext.length(); i++) {
