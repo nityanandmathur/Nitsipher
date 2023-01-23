@@ -20,7 +20,8 @@ public class Cryptanalyser {
     /** 
      * @param ciphertext
      */
-    public void analyser(String ciphertext) {
+    public void frequency_analyser(String ciphertext) {
+        System.out.println("Frequency Attack");
         HashMap<Character, Integer> frequency = new HashMap<>();
 
         for(int i = 0; i < ciphertext.length(); i++) {
@@ -51,14 +52,35 @@ public class Cryptanalyser {
                 // int x = mostCommon - 'A';
                 // int key2 = (x - 4 * key1) % 26;
 
-                System.out.println("Possible values of key1 and key2: " + key1 + " " + key2);
+                //System.out.println("Possible values of key1 and key2: " + key1 + " " + key2);
                 plaintext = "";
                 for(int i = 0; i < ciphertext.length(); i++) {
                     int c = (ciphertext.charAt(i) - 'A' - key2);
                     int inv = multiplicative_inverse(key1);
                     plaintext += (char)((c * inv % 26 + 'A'));
                 }
-                System.out.println("Potential plaintext: " + plaintext);
+                System.out.println("Plaintext: " + plaintext + " for key1 = " +  key1 + " & key2 = " + key2);
+            }
+        }
+    }
+
+    
+    /** 
+     * @param ciphertext
+     */
+    public void brute_analyser(String ciphertext)
+    {
+        for(int key1 = 1; key1 < 26; key1 += 2)
+        {   
+            int inverse = this.multiplicative_inverse(key1);
+            for(int key2 = 0; key2 < 26; key2++)
+            {
+                String plaintext = "";
+                for(int i = 0; i < ciphertext.length(); i++)
+                {
+                    plaintext += (char) (((inverse * ((ciphertext.charAt(i) + 'A' - key2)) % 26)) + 'A');
+                }
+                System.out.println("Plaintext: " + plaintext + " for key1 = " +  key1 + " & key2 = " + key2);
             }
         }
     }
@@ -72,7 +94,8 @@ public class Cryptanalyser {
         System.out.print("Enter CipherText: ");
         Scanner in = new Scanner(System.in);
         String cipherText = in.nextLine();
-        c.analyser(cipherText);
+        c.brute_analyser(cipherText);
+        c.frequency_analyser(cipherText);
         in.close();
     }
 }
