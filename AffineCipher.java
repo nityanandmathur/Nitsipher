@@ -1,6 +1,12 @@
 import java.util.HashMap;
 
 public class AffineCipher {
+    
+    /** 
+     * @param a
+     * @param b
+     * @return int
+     */
     public static int gcd(int a, int b) {
         while(b != 0) {
             int temp = b;
@@ -10,6 +16,12 @@ public class AffineCipher {
         return a;
     }
 
+    
+    /** 
+     * @param a
+     * @param m
+     * @return int
+     */
     public static int findInverse(int a, int m) {
         int m0 = m;
         int y = 0, x = 1;
@@ -27,6 +39,10 @@ public class AffineCipher {
         return x;
     }
 
+    
+    /** 
+     * @param ciphertext
+     */
     public static void affineBreak(String ciphertext) {
         ciphertext = ciphertext.toUpperCase();
         HashMap<Character, Integer> freqMap = new HashMap<>();
@@ -67,6 +83,10 @@ public class AffineCipher {
         }
     }
 
+    
+    /** 
+     * @param args
+     */
     public static void main(String[] args) {
         affineBreak("OZGVB");
     }
