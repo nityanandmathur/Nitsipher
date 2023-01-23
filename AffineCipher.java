@@ -43,14 +43,14 @@ public class AffineCipher {
         System.out.println("Most common letter in ciphertext: " + mostCommon);
         System.out.println("Value of most common letter: " + (mostCommon - 'A'));
 
-        for(int a = 1; a < 26; a++) {
-            if(a%2 != 0) {
-                int b = (mostCommonValue - (ciphertext.indexOf('E') - ciphertext.indexOf('A')) * a) % 26;
-                System.out.println("Possible values of a and b: " + a + " " + b);
+        for(int key1 = 1; key1 < 26; key1++) {
+            if(key1%2 != 0) {
+                int key2 = (mostCommonValue - (ciphertext.indexOf('E') - ciphertext.indexOf('A')) * key1) % 26;
+                System.out.println("Possible values of key1 and key2: " + key1 + " " + key2);
                 String plaintext = "";
                 for(int i = 0; i < ciphertext.length(); i++) {
-                    int c = (ciphertext.charAt(i) - 'A' - b);
-                    int inv = multiplicative_inverse(a);
+                    int c = (ciphertext.charAt(i) - 'A' - key2);
+                    int inv = multiplicative_inverse(key1);
                     plaintext += (char)((c * inv % 26 + 'A'));
                 }
                 System.out.println("Potential plaintext: " + plaintext);
